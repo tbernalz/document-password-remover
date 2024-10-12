@@ -2,6 +2,9 @@ from PyPDF2 import PdfReader, PdfWriter
 
 def remove_pdf_password(input_pdf, output_pdf, password):
     try:
+        if not output_pdf.lower().endswith('.pdf'):
+            output_pdf += '.pdf'
+
         reader = PdfReader(input_pdf)
         if reader.is_encrypted:
             reader.decrypt(password)
@@ -17,4 +20,3 @@ def remove_pdf_password(input_pdf, output_pdf, password):
 
     except Exception as e:
         raise Exception(f"Failed to remove password from {input_pdf}: {e}")
-
