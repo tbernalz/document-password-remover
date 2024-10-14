@@ -30,7 +30,8 @@ def main():
             remove_pdf_password(input_pdf, output_pdf, password)
             messagebox.showinfo("Success", f"Password removed from {input_pdf} and saved as {output_pdf}.")
         except Exception as e:
-            messagebox.showerror("Error", str(e))
+            print(f"Error: Failed to remove password from {input_pdf}: {e}")
+            messagebox.showerror("Error", f"Failed to remove password: {e}")
 
     input_pdf_label = tk.Label(root, text="Input PDF:")
     input_pdf_label.grid(row=0, column=0, padx=10, pady=5)

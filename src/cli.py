@@ -15,11 +15,14 @@ def main(remaining_args):
     password = args.password or Config.PDF_PASSWORD
 
     if not input_pdf or not output_pdf or not password:
-        print("Error: Input PDF, output PDF, and password must be provided either via arguments or environment variables")
+        print("Error: Missing required arguments: input, output, or password.")
+        parser.print_help()
         return
 
     try:
         remove_pdf_password(input_pdf, output_pdf, password)
-        print(f"Password removed from {input_pdf} and saved to {output_pdf}")
+        print(f"Success: Password removed from {input_pdf} and saved to {output_pdf}")
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error: Failed to remove password: {e}")
+        raise RuntimeError(f"Failed to remove password: {e}")
+

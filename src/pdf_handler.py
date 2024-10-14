@@ -19,4 +19,5 @@ def remove_pdf_password(input_pdf, output_pdf, password):
             writer.write(output_file)
 
     except Exception as e:
+        print(f"Error: Failed to remove password from {input_pdf}: {e}")
         raise Exception(f"Failed to remove password from {input_pdf}: {e}")

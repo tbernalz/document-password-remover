@@ -10,11 +10,17 @@ def main():
     args, remaining_args = parser.parse_known_args()
 
     if args.cli:
-        cli_main(remaining_args)
+        try:
+            cli_main(remaining_args)
+        except Exception as e:
+            print(f"Error: CLI mode failed with error: {e}")
     elif args.gui:
-        gui_main()
+        try:
+            gui_main()
+        except Exception as e:
+            print(f"Error: GUI mode failed with error: {e}")
     else:
-        print("Please specify a mode: --cli for Command Line Interface or --gui for Graphical User Interface.")
+        print("Error: Please specify a mode: --cli for Command Line Interface or --gui for Graphical User Interface.")
         parser.print_help()
 
 if __name__ == "__main__":
