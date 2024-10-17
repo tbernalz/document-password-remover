@@ -2,11 +2,14 @@ import argparse
 from config.config import Config
 from src.pdf_handler import remove_pdf_password
 
+
 def main(remaining_args):
-    parser = argparse.ArgumentParser(description="CLI mode: Remove password from documents")
-    parser.add_argument('--input', help="Path to the input PDF file")
-    parser.add_argument('--output', help="Path to save the output decrypted file")
-    parser.add_argument('--password', help="Password to unlock the file")
+    parser = argparse.ArgumentParser(
+        description="CLI mode: Remove password from documents"
+    )
+    parser.add_argument("--input", help="Path to the input PDF file")
+    parser.add_argument("--output", help="Path to save the output decrypted file")
+    parser.add_argument("--password", help="Password to unlock the file")
 
     args = parser.parse_args(remaining_args)
 
@@ -25,4 +28,3 @@ def main(remaining_args):
     except Exception as e:
         print(f"Error: Failed to remove password: {e}")
         raise RuntimeError(f"Failed to remove password: {e}")
-
