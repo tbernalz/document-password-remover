@@ -1,6 +1,8 @@
 import tkinter as tk
+import logging
 from tkinter import filedialog, messagebox
-from config.config import Config
+
+from src.config.config import Config
 from src.pdf_handler import remove_pdf_password
 
 
@@ -12,6 +14,7 @@ def main():
         input_file = filedialog.askopenfilename(title="Select PDF File")
         input_pdf_entry.delete(0, tk.END)
         input_pdf_entry.insert(0, input_file)
+        logging.info(f"Input PDF selected: {input_file}")
 
     def select_output_file():
         output_file = filedialog.asksaveasfilename(
@@ -19,6 +22,7 @@ def main():
         )
         output_pdf_entry.delete(0, tk.END)
         output_pdf_entry.insert(0, output_file)
+        logging.info(f"Output PDF selected: {output_file}")
 
     def decrypt_pdf():
         input_pdf = input_pdf_entry.get() or Config.INPUT_PDF
@@ -30,16 +34,22 @@ def main():
                 "Error",
                 "All fields (Input Path, Output Path, and Password) must be provided.",
             )
+            logging.error("Error: Missing required fields.")
             return
 
         try:
             remove_pdf_password(input_pdf, output_pdf, password)
+            logging.info(
+                f"Success: Password removed from {input_pdf} and saved as {output_pdf}"
+            )
             messagebox.showinfo(
                 "Success",
                 f"Password removed from {input_pdf} and saved as {output_pdf}.",
             )
         except Exception as e:
-            print(f"Error: Failed to remove password from {input_pdf}: {e}")
+            logging.error(
+                f"Error: Failed to remove password from {input_pdf}: {e}", exc_info=True
+            )
             messagebox.showerror("Error", f"Failed to remove password: {e}")
 
     input_pdf_label = tk.Label(root, text="Input PDF:")

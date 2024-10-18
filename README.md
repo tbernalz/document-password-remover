@@ -79,13 +79,17 @@ Note that in the Environment Variables Mode, you only need to add the `--cli`, b
 ```bash
 document-password-remover/
 │
+├── logs
+│   └── app.log                 # Log file where application logs are written
+│
 ├── src/
 │   ├── __init__.py             # Marks src as a package
 │   ├── config/
 │   │   ├── __init__.py         # Marks config as a package
-│   │   └── config.py           # Configuration handling
+│   │   └── config.py           # Configuration handling (e.g., loading .env variables)
 │   ├── cli.py                  # Command-line interface implementation
 │   ├── gui.py                  # Optional GUI implementation (using Tkinter)
+│   ├── log_handler.py          # Log setup file for logging to app.log and console
 │   └── pdf_handler.py          # Functions for handling PDF decryption
 │
 ├── .env                        # Environment variables file

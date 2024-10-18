@@ -1,5 +1,7 @@
 import argparse
-from config.config import Config
+import logging
+
+from src.config.config import Config
 from src.pdf_handler import remove_pdf_password
 
 
@@ -18,13 +20,13 @@ def main(remaining_args):
     password = args.password or Config.PDF_PASSWORD
 
     if not input_pdf or not output_pdf or not password:
-        print("Error: Missing required arguments: input, output, or password.")
+        logging.error("Missing required arguments: input, output, or password.")
         parser.print_help()
         return
 
     try:
         remove_pdf_password(input_pdf, output_pdf, password)
-        print(f"Success: Password removed from {input_pdf} and saved to {output_pdf}")
+        logging.info(f"Password removed from {input_pdf} and saved to {output_pdf}")
     except Exception as e:
-        print(f"Error: Failed to remove password: {e}")
+        logging.error(f"Failed to remove password: {e}", exc_info=True)
         raise RuntimeError(f"Failed to remove password: {e}")

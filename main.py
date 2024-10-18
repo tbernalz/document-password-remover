@@ -1,9 +1,13 @@
 import argparse
+import logging
 from src.cli import main as cli_main
 from src.gui import main as gui_main
+from src.log_handler import setup_logging
 
 
 def main():
+    setup_logging(log_file="logs/app.log")
+
     parser = argparse.ArgumentParser(description="Remove password from documents.")
     parser.add_argument(
         "--cli", action="store_true", help="Run the application in CLI mode."
@@ -18,15 +22,16 @@ def main():
         try:
             cli_main(remaining_args)
         except Exception as e:
-            print(f"Error: CLI mode failed with error: {e}")
+            logging.error(f"CLI mode failed with error: {e}", exc_info=True)
     elif args.gui:
         try:
             gui_main()
         except Exception as e:
-            print(f"Error: GUI mode failed with error: {e}")
+            logging.error(f"GUI mode failed with error: {e}", exc_info=True)
+
     else:
-        print(
-            "Error: Please specify a mode: --cli for Command Line Interface or --gui for Graphical User Interface."
+        logging.error(
+            "No mode specified. Use --cli for CLI mode or --gui for GUI mode."
         )
         parser.print_help()
 
