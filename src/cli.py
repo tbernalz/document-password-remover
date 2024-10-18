@@ -1,7 +1,6 @@
 import argparse
+import getpass
 import logging
-
-from src.config.config import Config
 from src.pdf_handler import remove_pdf_password
 
 
@@ -15,9 +14,9 @@ def main(remaining_args):
 
     args = parser.parse_args(remaining_args)
 
-    input_pdf = args.input or Config.INPUT_PDF
-    output_pdf = args.output or Config.OUTPUT_PDF
-    password = args.password or Config.PDF_PASSWORD
+    input_pdf = args.input or input("Please enter the path to the input PDF file: ")
+    output_pdf = args.output or input("Please enter the path to save the output file: ")
+    password = args.password or getpass.getpass("Please enter the PDF password: ")
 
     if not input_pdf or not output_pdf or not password:
         logging.error("Missing required arguments: input, output, or password.")

@@ -48,15 +48,42 @@ Before starting, make sure you have the following installed:
 
 ### CLI Mode
 
-Run the program in CLI mode by using the --cli flag. You can provide file paths and passwords through command-line arguments.
+Run the program in CLI mode by using the `--cli` flag. You can provide file paths and passwords through command-line arguments or use the interactive mode to input them.
+
+#### **1. Non-Interactive CLI Mode (with arguments)**
+
+In this mode, you provide all the necessary information as command-line arguments:
 
 ```bash
 python main.py --cli --input path/to/input.pdf --output path/to/output.pdf --password your_pdf_password
 ```
 
+This is ideal for automating processes and scripting.
+
+#### **2. Interactive CLI Mode**
+
+In the interactive mode, you don't need to pass the input arguments directly. Instead, the program will prompt you to enter the required information interactively during runtime.
+
+```bash
+python main.py --cli
+```
+
+Example of how it works:
+
+```bash
+(program) Please enter the input path:
+(user) path/to/input.pdf
+(program) Please enter the output path:
+(user) path/to/output.pdf
+(program) Please enter the password:
+(user) your_pdf_password
+```
+
+This mode is ideal for users who prefer a more guided experience (it hides the password when typed).
+
 ### GUI Mode
 
-To run the program in GUI mode, use the --gui flag:
+To run the program in GUI mode, use the `--gui` flag:
 
 ```bash
 python main.py --gui
