@@ -1,8 +1,11 @@
+import os
 import argparse
 import logging
+
 from src.cli import main as cli_main
 from src.gui import main as gui_main
 from src.log_handler import setup_logging
+from src.env_mode import main as env_mode_main
 
 
 def main():
@@ -28,12 +31,17 @@ def main():
             gui_main()
         except Exception as e:
             logging.error(f"GUI mode failed with error: {e}", exc_info=True)
-
     else:
-        logging.error(
-            "No mode specified. Use --cli for CLI mode or --gui for GUI mode."
-        )
-        parser.print_help()
+        try:
+            env_mode_main()
+        except Exception as e:
+            logging.error(
+                f"Failed to run in environment variables mode: {e}", exc_info=True
+            )
+            print(
+                "No mode specified. Use --cli for CLI mode, --gui for GUI mode, or set the appropriate environment variables."
+            )
+            parser.print_help()
 
 
 if __name__ == "__main__":

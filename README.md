@@ -6,7 +6,7 @@ This project is a tool for removing passwords from PDF files. The application al
 
 - Remove passwords from encrypted PDF files.
 
-- Multiple Interfaces: Use either the command-line interface (CLI) or the graphical user interface (GUI).
+- Multiple Interfaces: Use either the command-line interface (CLI), graphical user interface (GUI), or environment variables mode.
 
 - Modular Design: Easily extensible for future development or new file types.
 
@@ -34,9 +34,9 @@ Before starting, make sure you have the following installed:
     pip install -r requirements.txt
     ```
 
-1.  Create the .env file for configuration (or use CLI):
+1.  Optionally, create the `.env` file for configuration (for Environment Variables mode):
 
-    Edit the .env file with your paths:
+    Edit the `.env` file with your paths:
 
     ```bash
     INPUT_PDF=path/to/input.pdf
@@ -93,13 +93,13 @@ In GUI mode, a simple interface will allow you to browse for files and input pas
 
 ### Environment Variables Mode
 
-Ensure the .env file is set up correctly, and then run the script:
+If you prefer to configure everything through environment variables, you can use this mode. Ensure the .env file is set up correctly, and then run the script:
 
 ```bash
-python main.py --cli
+python main.py
 ```
 
-Note that in the Environment Variables Mode, you only need to add the `--cli`, but not the rest of flags.
+(You can run `python main.py --help` to see the help usage message)
 
 ## project directory tree:
 
@@ -115,14 +115,15 @@ document-password-remover/
 │   │   ├── __init__.py         # Marks config as a package
 │   │   └── config.py           # Configuration handling (e.g., loading .env variables)
 │   ├── cli.py                  # Command-line interface implementation
-│   ├── gui.py                  # Optional GUI implementation (using Tkinter)
+│   ├── gui.py                  # GUI implementation (using Tkinter)
+│   ├── env_mode.py             # Environment variables mode implementation
 │   ├── log_handler.py          # Log setup file for logging to app.log and console
 │   └── pdf_handler.py          # Functions for handling PDF decryption
 │
 ├── .env                        # Environment variables file
 ├── .env.example                # Example file showing required environment variables
 ├── .gitignore                  # Specifies files and directories to be ignored by Git
-├── main.py                     # Main entry point of the application, orchestrates PDF password removal via CLI or GUI
+├── main.py                     # Main entry point of the application, orchestrates PDF password removal via CLI, GUI, or Env Mode
 ├── README.md                   # Main project documentation
 └── requirements.txt            # Dependencies required to run the project
 

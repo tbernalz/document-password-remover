@@ -2,7 +2,6 @@ import tkinter as tk
 import logging
 from tkinter import filedialog, messagebox
 
-from src.config.config import Config
 from src.pdf_handler import remove_pdf_password
 
 
@@ -25,9 +24,9 @@ def main():
         logging.info(f"Output PDF selected: {output_file}")
 
     def decrypt_pdf():
-        input_pdf = input_pdf_entry.get() or Config.INPUT_PDF
-        output_pdf = output_pdf_entry.get() or Config.OUTPUT_PDF
-        password = password_entry.get() or Config.PDF_PASSWORD
+        input_pdf = input_pdf_entry.get()
+        output_pdf = output_pdf_entry.get()
+        password = password_entry.get()
 
         if not input_pdf or not output_pdf or not password:
             messagebox.showerror(
