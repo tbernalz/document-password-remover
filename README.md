@@ -101,7 +101,7 @@ python main.py
 
 (You can run `python main.py --help` to see the help usage message)
 
-## project directory tree:
+## 📂 Project directory tree:
 
 ```bash
 document-password-remover/
@@ -125,8 +125,8 @@ document-password-remover/
 ├── .gitignore                  # Specifies files and directories to be ignored by Git
 ├── main.py                     # Main entry point of the application, orchestrates PDF password removal via CLI, GUI, or Env Mode
 ├── README.md                   # Main project documentation
-└── requirements.txt            # Dependencies required to run the project
-
+├── requirements.txt            # Dependencies required to run the project
+└── setup.py                    # Setup script for packaging the project
 ```
 
 ## 🌟 Contributing
