@@ -1,21 +1,21 @@
 import os
 import logging
 from src.config.config import Config
-from src.pdf_handler import remove_pdf_password
+from src.file_handler import remove_password
 
 
 def main():
-    input_pdf = Config.INPUT_PDF
-    output_pdf = Config.OUTPUT_PDF
-    password = Config.PDF_PASSWORD
+    input_file = Config.INPUT_FILE
+    output_file = Config.OUTPUT_FILE
+    password = Config.FILE_PASSWORD
 
-    if not input_pdf or not output_pdf:
-        logging.error("Environment variables INPUT_PDF and OUTPUT_PDF are required.")
+    if not input_file or not output_file:
+        logging.error("Environment variables INPUT_FILE and OUTPUT_FILE are required.")
         raise ValueError("Missing required environment variables.")
 
     try:
-        remove_pdf_password(input_pdf, output_pdf, password)
-        logging.info(f"Password removed from {input_pdf} and saved to {output_pdf}")
+        remove_password(input_file, output_file, password)
+        logging.info(f"Password removed from {input_file} and saved to {output_file}")
     except Exception as e:
         logging.error(
             f"Failed to remove password using environment variables: {e}", exc_info=True
