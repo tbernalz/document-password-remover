@@ -1,14 +1,16 @@
 # Document Password Remover
 
-This project is a tool for removing passwords from PDF files. The application allows you to provide the input PDF, output PDF, and password through environment variables or both a **command-line interface (CLI)** and an optional **graphical user interface (GUI)**, allowing users to easily remove passwords and save the decrypted versions of their documents.
+This project is a tool for removing passwords from different types of documents, including PDF and Word files. The application allows you to provide the input file, output file, and password through environment variables or both a **command-line interface (CLI)** and an optional **graphical user interface (GUI)**, allowing users to easily remove passwords and save the decrypted versions of their documents.
 
 ## 🚀 Features
 
-- Remove passwords from encrypted PDF files.
+- Support for PDF and Word files: Remove passwords and save decrypted copies.
 
 - Multiple Interfaces: Use either the command-line interface (CLI), graphical user interface (GUI), or environment variables mode.
 
 - Modular Design: Easily extensible for future development or new file types.
+
+- Logging: Logs all actions for debugging and future reference.
 
 ## 📦 Setup and Installation
 
@@ -39,9 +41,9 @@ Before starting, make sure you have the following installed:
     Edit the `.env` file with your paths:
 
     ```bash
-    INPUT_PDF=path/to/input.pdf
-    OUTPUT_PDF=path/to/output.pdf
-    PDF_PASSWORD=your_pdf_password
+    INPUT_FILE=path/to/input.file
+    OUTPUT_FILE=path/to/output.file
+    FILE_PASSWORD=your_file_password
     ```
 
 ## 🚸 Usage
@@ -55,7 +57,7 @@ Run the program in CLI mode by using the `--cli` flag. You can provide file path
 In this mode, you provide all the necessary information as command-line arguments:
 
 ```bash
-python main.py --cli --input path/to/input.pdf --output path/to/output.pdf --password your_pdf_password
+python main.py --cli --input path/to/input.file --output path/to/output.file --password your_file_password
 ```
 
 This is ideal for automating processes and scripting.
@@ -72,11 +74,11 @@ Example of how it works:
 
 ```bash
 (program) Please enter the input path:
-(user) path/to/input.pdf
+(user) path/to/input.file
 (program) Please enter the output path:
-(user) path/to/output.pdf
+(user) path/to/output.file
 (program) Please enter the password:
-(user) your_pdf_password
+(user) your_file_password
 ```
 
 This mode is ideal for users who prefer a more guided experience (it hides the password when typed).
@@ -106,7 +108,7 @@ python main.py
 ```bash
 document-password-remover/
 │
-├── logs
+├── logs/
 │   └── app.log                 # Log file where application logs are written
 │
 ├── src/
@@ -118,12 +120,13 @@ document-password-remover/
 │   ├── gui.py                  # GUI implementation (using Tkinter)
 │   ├── env_mode.py             # Environment variables mode implementation
 │   ├── log_handler.py          # Log setup file for logging to app.log and console
-│   └── pdf_handler.py          # Functions for handling PDF decryption
+│   ├── pdf_handler.py          # Functions for handling PDF decryption
+│   └── word_handler.py         # Functions for handling Word decryption
 │
 ├── .env                        # Environment variables file
 ├── .env.example                # Example file showing required environment variables
 ├── .gitignore                  # Specifies files and directories to be ignored by Git
-├── main.py                     # Main entry point of the application, orchestrates PDF password removal via CLI, GUI, or Env Mode
+├── main.py                     # Main entry point of the application, orchestrates file password removal via CLI, GUI, or Env Mode
 ├── README.md                   # Main project documentation
 ├── requirements.txt            # Dependencies required to run the project
 └── setup.py                    # Setup script for packaging the project
