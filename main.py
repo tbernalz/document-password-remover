@@ -11,7 +11,7 @@ from src.env_mode import main as env_mode_main
 def main():
     setup_logging(log_file="logs/app.log")
 
-    parser = argparse.ArgumentParser(description="Remove password from documents.")
+    parser = argparse.ArgumentParser(description="Remove password from files.")
     parser.add_argument(
         "--cli", action="store_true", help="Run the application in CLI mode."
     )

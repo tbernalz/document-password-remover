@@ -3,16 +3,14 @@ import getpass
 import logging
 
 from src.file_handler import remove_password
-from src.enum.document_types import DocumentType
+from src.enum.file_types import FileType
 
 
 def main(remaining_args):
-    parser = argparse.ArgumentParser(
-        description="CLI mode: Remove password from documents"
-    )
+    parser = argparse.ArgumentParser(description="CLI mode: Remove password from files")
     parser.add_argument(
-        "--document",
-        help=f"Document type to remove password from. Supported types: {', '.join([doc.value for doc in DocumentType])}",
+        "--file",
+        help=f"File type to remove password from. Supported types: {', '.join([doc.value for doc in FileType])}",
     )
     parser.add_argument("--input", help="Path to the input file")
     parser.add_argument("--output", help="Path to save the output decrypted file")
@@ -20,28 +18,25 @@ def main(remaining_args):
 
     args = parser.parse_args(remaining_args)
 
-    available_docs = ", ".join([doc.value for doc in DocumentType])
-    document = (
-        args.document
-        or input(f"Please enter the document type ({available_docs}): ").lower()
+    available_docs = ", ".join([doc.value for doc in FileType])
+    file = (
+        args.file or input(f"Please enter the file type ({available_docs}): ").lower()
     )
 
     try:
-        document_type = DocumentType(document)
+        file_type = FileType(file)
     except ValueError:
         logging.error(
-            f"Unsupported document type: {document}. Supported types: {available_docs}"
+            f"Unsupported file type: {file}. Supported types: {available_docs}"
         )
         return
     input_file = args.input or input(
-        f"Please enter the path to the input {document} file: "
+        f"Please enter the path to the input {file} file: "
     )
     output_file = args.output or input(
         "Please enter the path to save the output file: "
     )
-    password = args.password or getpass.getpass(
-        f"Please enter the {document} password: "
-    )
+    password = args.password or getpass.getpass(f"Please enter the {file} password: ")
 
     if not input_file or not output_file or not password:
         logging.error("Missing required arguments: input, output, or password.")

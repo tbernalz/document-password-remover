@@ -3,15 +3,15 @@ import logging
 from tkinter import filedialog, messagebox
 
 from src.file_handler import remove_password
-from src.enum.document_types import DocumentType
+from src.enum.file_types import FileType
 
 
 def main():
     root = tk.Tk()
-    root.title("Document Password Remover")
+    root.title("File Password Remover")
 
     def select_input_file():
-        selected_type = document_type_var.get().lower()
+        selected_type = file_type_var.get().lower()
         file_types = [(f"{selected_type.upper()} Files", f"*.{selected_type}")]
         input_file = filedialog.askopenfilename(
             title=f"Select {selected_type.upper()} File", filetypes=file_types
@@ -21,7 +21,7 @@ def main():
         logging.info(f"Input {selected_type.upper()} selected: {input_file}")
 
     def select_output_file():
-        selected_type = document_type_var.get().lower()
+        selected_type = file_type_var.get().lower()
         output_file = filedialog.asksaveasfilename(
             title=f"Save Decrypted {selected_type.upper()} As",
             defaultextension=f".{selected_type}",
@@ -31,11 +31,10 @@ def main():
         output_file_entry.insert(0, output_file)
         logging.info(f"Output {selected_type.upper()} selected: {output_file}")
 
-    def decrypt_document():
+    def decrypt_file():
         input_file = input_file_entry.get()
         output_file = output_file_entry.get()
         password = password_entry.get()
-        document_type = document_type_var.get().lower()
 
         if not input_file or not output_file or not password:
             messagebox.showerror(
@@ -61,16 +60,16 @@ def main():
             )
             messagebox.showerror("Error", f"Failed to remove password: {e}")
 
-    document_type_label = tk.Label(root, text="Document Type:")
-    document_type_label.grid(row=0, column=0, padx=10, pady=5)
+    file_type_label = tk.Label(root, text="File Type:")
+    file_type_label.grid(row=0, column=0, padx=10, pady=5)
 
-    document_type_var = tk.StringVar(root)
-    document_type_var.set(DocumentType.PDF.value)
+    file_type_var = tk.StringVar(root)
+    file_type_var.set(FileType.PDF.value)
 
-    document_type_dropdown = tk.OptionMenu(
-        root, document_type_var, *[doc.value.upper() for doc in DocumentType]
+    file_type_dropdown = tk.OptionMenu(
+        root, file_type_var, *[doc.value.upper() for doc in FileType]
     )
-    document_type_dropdown.grid(row=0, column=1, padx=10, pady=5)
+    file_type_dropdown.grid(row=0, column=1, padx=10, pady=5)
 
     input_file_label = tk.Label(root, text="Input File:")
     input_file_label.grid(row=1, column=0, padx=10, pady=5)
@@ -97,7 +96,7 @@ def main():
     password_entry = tk.Entry(root, show="*", width=40)
     password_entry.grid(row=3, column=1, padx=10, pady=5)
 
-    decrypt_button = tk.Button(root, text="Remove Password", command=decrypt_document)
+    decrypt_button = tk.Button(root, text="Remove Password", command=decrypt_file)
     decrypt_button.grid(row=4, columnspan=3, pady=10)
 
     root.mainloop()

@@ -7,16 +7,16 @@ with open("requirements.txt", "r") as f:
     requirements = f.read().splitlines()
 
 setup(
-    name="document-password-remover",
+    name="file-password-remover",
     version="1.0.0",
     author="Tomás Bernal Zuluaga",
     author_email="tbernalz@eafit.edu.co",
-    description="A Python tool to remove passwords from documents such as PDFs, Word, and Excel files",
+    description="A Python tool to remove passwords from files such as PDFs, Word, and Excel files",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/tbernalz/document-password-remover",
+    url="https://github.com/tbernalz/file-password-remover",
     project_urls={
-        "Bug Tracker": "https://github.com/tbernalz/document-password-remover/issues",
+        "Bug Tracker": "https://github.com/tbernalz/file-password-remover/issues",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -30,7 +30,7 @@ setup(
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "document-password-remover=main:main",
+            "file-password-remover=main:main",
         ],
     },
 )

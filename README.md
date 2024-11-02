@@ -1,6 +1,6 @@
-# Document Password Remover
+# File Password Remover
 
-This project is a tool for removing passwords from different types of documents, including PDF, Excel and Word files. The application allows you to provide the input file, output file, and password through environment variables or both a **command-line interface (CLI)** and an optional **graphical user interface (GUI)**, allowing users to easily remove passwords and save the decrypted versions of their documents.
+This project is a tool for removing passwords from different types of files, including PDF, Excel and Word files. The application allows you to provide the input file, output file, and password through environment variables or both a **command-line interface (CLI)** and an optional **graphical user interface (GUI)**, allowing users to easily remove passwords and save the decrypted versions of their files.
 
 ## 🚀 Features
 
@@ -26,8 +26,8 @@ Before starting, make sure you have the following installed:
 1.  Clone the repository:
 
     ```bash
-    git clone https://github.com/tbernalz/document-password-remover.git
-    cd document-password-remover
+    git clone https://github.com/tbernalz/file-password-remover.git
+    cd file-password-remover
     ```
 
 1.  Install the required packages:
@@ -106,7 +106,7 @@ python main.py
 ## 📂 Project directory tree:
 
 ```bash
-document-password-remover/
+file-password-remover/
 │
 ├── logs/
 │   └── app.log                 # Log file where application logs are written

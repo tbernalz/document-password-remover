@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class DocumentType(Enum):
+class FileType(Enum):
     PDF = "pdf"
     WORD = "docx"
     EXCEL = "xlsx"

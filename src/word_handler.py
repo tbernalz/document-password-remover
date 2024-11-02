@@ -20,7 +20,7 @@ def remove_word_password(input_word, output_word, password):
         doc = Document(decrypted)
         doc.save(output_word)
 
-        logging.info(f"Decrypted Word document saved to {output_word}")
+        logging.info(f"Decrypted Word file saved to {output_word}")
 
     except Exception as e:
         logging.error(
