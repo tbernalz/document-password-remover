@@ -4,6 +4,7 @@ from enum import Enum
 class DocumentType(Enum):
     PDF = "pdf"
     WORD = "docx"
+    EXCEL = "xlsx"
 
     @classmethod
     def from_extension(cls, ext):
@@ -12,5 +13,7 @@ class DocumentType(Enum):
             return cls.PDF
         elif ext in [".docx", ".doc"]:
             return cls.WORD
+        elif ext in [".xlsx", ".xls"]:
+            return cls.EXCEL
         else:
             raise ValueError(f"Unsupported file type: {ext}")

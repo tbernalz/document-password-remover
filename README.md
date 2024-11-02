@@ -1,10 +1,10 @@
 # Document Password Remover
 
-This project is a tool for removing passwords from different types of documents, including PDF and Word files. The application allows you to provide the input file, output file, and password through environment variables or both a **command-line interface (CLI)** and an optional **graphical user interface (GUI)**, allowing users to easily remove passwords and save the decrypted versions of their documents.
+This project is a tool for removing passwords from different types of documents, including PDF, Excel and Word files. The application allows you to provide the input file, output file, and password through environment variables or both a **command-line interface (CLI)** and an optional **graphical user interface (GUI)**, allowing users to easily remove passwords and save the decrypted versions of their documents.
 
 ## 🚀 Features
 
-- Support for PDF and Word files: Remove passwords and save decrypted copies.
+- Support for PDF, Excel and Word files: Remove passwords and save decrypted copies.
 
 - Multiple Interfaces: Use either the command-line interface (CLI), graphical user interface (GUI), or environment variables mode.
 
@@ -119,6 +119,7 @@ document-password-remover/
 │   ├── cli.py                  # Command-line interface implementation
 │   ├── gui.py                  # GUI implementation (using Tkinter)
 │   ├── env_mode.py             # Environment variables mode implementation
+│   ├── excel_handler.py        # Functions for handling Excel decryption
 │   ├── log_handler.py          # Log setup file for logging to app.log and console
 │   ├── pdf_handler.py          # Functions for handling PDF decryption
 │   └── word_handler.py         # Functions for handling Word decryption
